@@ -20,7 +20,7 @@ public class CommandUseCooldownListener implements Listener {
 
     @EventHandler
     public void onCommand(PlayerCommandPreprocessEvent e) {
-        // if(e.getPlayer().hasPermission("chatmanager.bypass.antispam")) return;
+        if(e.getPlayer().hasPermission("chatmanager.bypass.antispam")) return;
 
         final UUID UUID = e.getPlayer().getUniqueId();
         final long DELAY = 80;
