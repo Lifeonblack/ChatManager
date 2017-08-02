@@ -83,3 +83,27 @@ websiteMatcher:
  - 'net'
  - 'mc'
  - 'play'
+
+ ######################################
+ #          Chat Format               #
+ ######################################
+
+# Enable this plugin to format your chat if you want
+chatFormatting: true
+
+# the format
+# {PLAYER} , {RANK} = PEX rank or GroupManager rank
+# {MESSAGE} returns to player message
+# {DISPLAYNAME} returns to player displayname
+chatFormat: '&7{PLAYER} &7: &f{MESSAGE}'
+
+# format based on the permission
+groupFormat:
+
+  # chatmanager.op is default, this will check if the player is op not the permission
+  op: '&8[&cOperator&8] &c{PLAYER} &7: &f{MESSAGE}'
+
+  # else if the player is not op check other permission
+  chatmanager.builder: '&8[&1Builder&8] &a{PLAYER} &7: &f{MESSAGE}'
+
+  # If the player is not permitted it will direct to the default chatFormat

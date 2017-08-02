@@ -59,6 +59,7 @@ public class ChatManager extends JavaPlugin {
         new StaffChatExclusive();
         new ColorizeChat();
         new AntiAdvertise();
+        new ChatFormat();
     }
 
     private void addCommands() {
