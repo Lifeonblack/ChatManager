@@ -1,0 +1,66 @@
+##########
+#######
+####
+
+# Possible placeholders in this plugin
+# PLACEHOLDERS
+# {PLAYER} = returns to the name of the player who is related to event
+# {MESSAGE} = returns to the message from player
+
+##################################
+#          Player Swear          #
+##################################
+
+
+# replace the words by a character
+# not that if this is enabled,
+# the letter of the word will be replace to the character you input
+replace: true
+
+# the character to replace to a word test = "****"
+replacement: '*'
+
+# Block player from chat if they swear
+block: false
+
+
+######################################
+#          Chat Cooldown             #
+######################################
+
+chatCooldown: true
+
+# Input chat interval ( seconds )
+chatInterval: 3
+
+######################################
+#            Staff Chat              #
+######################################
+
+staffChat: true
+
+staffChatFormat: '&8[&6StaffChat&8] &6{PLAYER} : &r{MESSAGE}'
+
+######################################
+#            Broadcast               #
+######################################
+
+# {PLAYER} might be console if the sender of the command is console
+broadcastFormat: '&8[&6Broadcast&8] &6{PLAYER} : &r{MESSAGE}'
+
+######################################
+#           Clear Chat               #
+######################################
+
+# Clear chat output message will be given to player if it is enabled
+# You can always modify the output message in lang.yml
+
+clearChatOutputMessage: true
+
+######################################
+#            ChatColor               #
+######################################
+
+# enable this if you want to colorize chat when it contains color codes
+# for color code list : http://www.minecraftforum.net/forums/support/server-support/tutorials-and-faqs/1940467-bukkit-colour-codes
+chatColorEffect: true

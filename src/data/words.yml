@@ -1,0 +1,8 @@
+###############
+#########
+#####
+
+# input all words to be banned
+BannedWords:
+  - fuck
+  - ass

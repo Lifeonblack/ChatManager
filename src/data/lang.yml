@@ -1,0 +1,23 @@
+############
+########
+####
+
+# input your language here
+language: 'English'
+
+english:
+
+  noPermission: '&8[&bChatManager&8] &cYou have no permission to do that'
+  reloadSuccess: '&8[&bChatManager&8] &aAll files reloaded successfully'
+  noSwear: '&8[&bChatManager&8] &cSwearing is not allowed in this server'
+  unknownCommand: '&8[&bChatManager&8] &cUnknown command'
+  chatCooldown: '&8[&bChatCooldown&8] &cYou cannot send message right now'
+  broadcastCorrectUsage: '&8[&bChatManager&8] &c/{COMMAND} {MESSAGE}'
+  clearMessage: '&8[&bChatManager&8] &aYour chat has been cleared'
+  onlyForPlayer: '&8[&bChatManager&8] &cYou must be a player to do that'
+  targetOffline: '&8[&bChatManager&8] &cPlayer is not online'
+  targetClearChat: '&8[&bChatManager&8] &aSuccessfully cleared {PLAYER}''s chat'
+  addWordSuccessfully: '&8[&bChatManager&8] &aWord {WORD} added successfully'
+  removeWordSuccessfully: '&8[&bChatManager&8] &aWord {WORD} remove successfully'
+  wordAlreadyExist: '&8[&bChatManager&8] &aWord {WORD} already exist'
+  wordNotFound: '&8[&bChatManager&8] &aWord {WORD} did not exist'

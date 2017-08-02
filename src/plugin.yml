@@ -1,0 +1,62 @@
+name: ChatManager
+version: 1.0
+author: Lifeonblack
+main: org.chatmanager.ChatManager
+commands:
+  chatmanager:
+    description: main command for this plugin
+    aliases: [cm]
+  broadcast:
+    description: broadcast something to the server
+    aliases: [say, shout, all]
+  clearchat:
+    description: clear player chat
+    aliases: [cc]
+
+permissions:
+  chatmanager.admin: {description: ability to reload configs add word and remove word , default: false}
+  chatmanager.broadcast: {description: ability to use /broadcast command, default: false}
+  chatmanager.clearchat.self: {description: ability to clear own chat, default: false}
+  chatmanager.clearchat.others: {description: ability to clear ones chat, default: false}
+  chatmanager.clearchat.all: {description: ability to clear all chat, default: false}
+  chatmanager.staffchat.send: {description: ability to send to staff chat, default: false}
+  chatmanager.staffchat.receive: {description: ability to receive from staff chat, default: false}
+  chatmanager.bypass.swear: {description: bypass from anti swear, default: false}
+  chatmanager.bypass.cooldown: {description: bypass from chat cooldown, default: false}
+  chatmanager.chat.effect: {description: ability to use effect codes from chat, default: false}
+  chatmanager.chat.color: {description: ability to use color codes from chat, default: false}
+
+  chatmanager.*:
+    children:
+      chatmanager.admin: true
+      chatmanager.broadcast: true
+      chatmanager.clearchat.self: true
+      chatmanager.clearchat.others: true
+      chatmanager.clearchat.all: true
+      chatmanager.staffchat.send: true
+      chatmanager.staffchat.receive: true
+      chatmanager.bypass.swear: true
+      chatmanager.bypass.cooldown: true
+      chatmanager.chat.effect: true
+      chatmanager.chat.color: true
+
+  chatmanager.clearchat.*:
+    children:
+      chatmanager.clearchat.self: true
+      chatmanager.clearchat.all: true
+      chatmanager.clearchat.others: true
+
+  chatmanager.staffchat.*:
+    children:
+      chatmanager.staffchat.send: true
+      chatmanager.staffchat.receive: true
+
+  chatmanager.bypass.*:
+    children:
+      chatmanager.bypass.swear: true
+      chatmanager.bypass.cooldown: true
+
+  chatmanager.chat.*:
+    children:
+      chatmanager.chat.color: true
+      chatmanager.chat.effect: true
