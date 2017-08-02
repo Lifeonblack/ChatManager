@@ -6,6 +6,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.chatmanager.ChatManager;
 import org.chatmanager.api.ApiManager;
+import org.chatmanager.util.Word;
+
 import java.util.List;
 
 public class AntiAdvertise implements Listener {
@@ -21,22 +23,35 @@ public class AntiAdvertise implements Listener {
             return;
         }
 
-        String numbers = "[0-9]";
+        if(e.getPlayer().hasPermission("chatmanager.bypass.antiad")) {
+            return;
+        }
+
         boolean advertise = false;
         List<String> webs = ChatManager.getInstance().getConfig().getStringList("websiteMatcher");
         if(!e.getMessage().contains(" ")) {
-            if(!e.getMessage().contains(".")) {
-                return;
-            }
-            String[] ipOrElse = e.getMessage().split("\\.");
-            for(String web : webs) {
-                for(int i = 0; i < ipOrElse.length; i++) {
-                    if(ipOrElse[i].equalsIgnoreCase(web) || ipOrElse[i].matches(numbers)) {
-                        advertise = true;
+            if(e.getMessage().contains(",")) {
+                String[] ipOrElse = e.getMessage().split(",");
+                for(String web : webs) {
+                    for(int i = 0; i < ipOrElse.length; i++) {
+                        if(ipOrElse[i].equalsIgnoreCase(web) || new Word(ipOrElse[i]).isInt()) {
+                            advertise = true;
+                        }
                     }
                 }
+                e.setCancelled(advertise);
             }
-            e.setCancelled(advertise);
+            if(e.getMessage().contains(".")) {
+                String[] ipOrElse = e.getMessage().split("\\.");
+                for (String web : webs) {
+                    for (int i = 0; i < ipOrElse.length; i++) {
+                        if (ipOrElse[i].equalsIgnoreCase(web) || new Word(ipOrElse[i]).isInt()) {
+                            advertise = true;
+                        }
+                    }
+                }
+                e.setCancelled(advertise);
+            }
         }
 
         if(e.getMessage().contains(" ")) {
@@ -45,7 +60,17 @@ public class AntiAdvertise implements Listener {
                     String[] ipOrElse = message.split("\\.");
                     for(String web : webs) {
                         for(int i = 0; i < ipOrElse.length; i++) {
-                            if(ipOrElse[i].equalsIgnoreCase(web) || ipOrElse[i].matches(numbers)) {
+                            if(ipOrElse[i].equalsIgnoreCase(web) || new Word(ipOrElse[i]).isInt()) {
+                                advertise = true;
+                            }
+                        }
+                    }
+                }
+                if(message.contains(",")) {
+                    String[] ipOrElse = message.split(",");
+                    for(String web : webs) {
+                        for(int i = 0; i < ipOrElse.length; i++) {
+                            if(ipOrElse[i].equalsIgnoreCase(web) || new Word(ipOrElse[i]).isInt()) {
                                 advertise = true;
                             }
                         }
@@ -57,6 +82,20 @@ public class AntiAdvertise implements Listener {
 
         if(advertise) {
             e.getPlayer().sendMessage(apiManager.getLanguage().getString("noAdvertise"));
+        }
+    }
+
+
+    @EventHandler
+    public void onChatNumber(AsyncPlayerChatEvent e) {
+        if(e.getPlayer().hasPermission("chatmanager.chat.numbers")) {
+            return;
+        }
+
+        if(new Word(e.getMessage()).isInt()) {
+            e.getPlayer().sendMessage(apiManager.getLanguage().getString("forbiddenUseOfNumber"));
+            e.setCancelled(true);
+            return;
         }
     }
 }
