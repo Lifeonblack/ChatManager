@@ -37,8 +37,10 @@ public class AntiAdvertise implements Listener {
                 if(ipOrElse[1].matches(numbers)) {
                     advertise = true;
                 }
-                if(ipOrElse[2].equalsIgnoreCase(web) || ipOrElse[2].matches(numbers)) {
-                    advertise = true;
+                if(ipOrElse[2] != null) {
+                    if(ipOrElse[2].equalsIgnoreCase(web) || ipOrElse[2].matches(numbers)) {
+                        advertise = true;
+                    }
                 }
             }
             e.setCancelled(advertise);
@@ -55,8 +57,10 @@ public class AntiAdvertise implements Listener {
                         if(ipOrElse[1].matches(numbers)) {
                             advertise = true;
                         }
-                        if(ipOrElse[2].equalsIgnoreCase(web) || ipOrElse[2].matches(numbers)) {
-                            advertise = true;
+                        if(ipOrElse[2] != null) {
+                            if(ipOrElse[2].equalsIgnoreCase(web) || ipOrElse[2].matches(numbers)) {
+                                advertise = true;
+                            }
                         }
                     }
                 }
