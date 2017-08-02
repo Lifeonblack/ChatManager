@@ -60,6 +60,7 @@ public class ChatManager extends JavaPlugin {
         new ColorizeChat();
         new AntiAdvertise();
         new ChatFormat();
+        new CommandUseCooldownListener();
     }
 
     private void addCommands() {

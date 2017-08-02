@@ -26,6 +26,7 @@ permissions:
   chatmanager.chat.effect: {description: ability to use effect codes from chat, default: false}
   chatmanager.chat.color: {description: ability to use color codes from chat, default: false}
   chatmanager.bypass.antiad: {description: ability to bypass anti ad, default: false}
+  chatmanager.bypass.antispam: {description: ability to bypass anti spam, default: false}
   chatmanager.chat.numbers: {description: ability to chat numbers, default: false}
 
   chatmanager.*:
@@ -43,6 +44,7 @@ permissions:
       chatmanager.chat.color: true
       chatmanager.bypass.antiad: true
       chatmanager.chat.numbers: true
+      chatmanager.bypass.antispam: true
 
   chatmanager.clearchat.*:
     children:
@@ -60,6 +62,7 @@ permissions:
       chatmanager.bypass.swear: true
       chatmanager.bypass.cooldown: true
       chatmanager.bypass.antiad: true
+      chatmanager.bypass.antispam: true
 
   chatmanager.chat.*:
     children:

@@ -8,6 +8,7 @@ public class Lists {
     public static List<String> words;
     public static List<FileUtility> files;
     public static List<UUID> players;
+    public static HashMap<UUID, Integer> chatCount;
 
     public static void reloadWords() {
         new FileUtility("words").getConfig().set("BannedWords", words);
@@ -24,6 +25,7 @@ public class Lists {
         files = new ArrayList<>();
         words = new FileUtility("words").getConfig().getStringList("BannedWords");
         players = new ArrayList<>();
+        chatCount = new HashMap<>();
     }
 
 }

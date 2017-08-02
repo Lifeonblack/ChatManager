@@ -34,6 +34,16 @@ chatCooldown: true
 chatInterval: 3
 
 ######################################
+#             Anti Spam              #
+######################################
+
+# After having 5 counts of message it will give a delay
+chatLimit: 5
+
+# seconds delay
+chatDelay: 3
+
+######################################
 #            Staff Chat              #
 ######################################
 
