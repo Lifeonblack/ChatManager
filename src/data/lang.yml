@@ -21,4 +21,5 @@ english:
   removeWordSuccessfully: '&8[&bChatManager&8] &aWord {WORD} remove successfully'
   wordAlreadyExist: '&8[&bChatManager&8] &aWord {WORD} already exist'
   wordNotFound: '&8[&bChatManager&8] &aWord {WORD} did not exist'
-  noAdvertise: '&8[&bChatManager&8] &aAdvertising in this server is not allowed'
+  noAdvertise: '&8[&bChatManager&8] &cAdvertising in this server is not allowed'
+  forbiddenUseOfNumber: '&8[&bChatManager&8] &cYou cannot use numbers on chat'
