@@ -64,3 +64,22 @@ clearChatOutputMessage: true
 # enable this if you want to colorize chat when it contains color codes
 # for color code list : http://www.minecraftforum.net/forums/support/server-support/tutorials-and-faqs/1940467-bukkit-colour-codes
 chatColorEffect: true
+
+######################################
+#            Anti Ads                #
+######################################
+
+# enable this if you want to add anti advertisement
+antiAd: true
+
+# if a player chat something match this with dots (.)
+# will be cancelled and known as advertising
+# such as play.test.test
+# mc.com.org
+# and so on
+websiteMatcher:
+ - 'com'
+ - 'org'
+ - 'net'
+ - 'mc'
+ - 'play'

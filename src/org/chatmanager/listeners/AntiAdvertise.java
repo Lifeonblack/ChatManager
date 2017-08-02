@@ -18,9 +18,13 @@ public class AntiAdvertise implements Listener {
 
     @EventHandler
     public void onChat(AsyncPlayerChatEvent e) {
+        if(!ChatManager.getInstance().getConfig().getBoolean("antiAd")) {
+            return;
+        }
+
         String numbers = "[0-9]";
         boolean advertise = false;
-        String[] webs = {"com", "org", "net", "play", "mc"};
+        String[] webs = ChatManager.getInstance().getConfig().getStringList("websiteMatcher").toArray(new String[ChatManager.getInstance().getConfig().getStringList("websiteMatcher").size()]);
         if(!e.getMessage().contains(" ")) {
             if(!e.getMessage().contains(".")) {
                 return;
