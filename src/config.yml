@@ -104,6 +104,7 @@ groupFormat:
   op: '&8[&cOperator&8] &c{PLAYER} &7: &f{MESSAGE}'
 
   # else if the player is not op check other permission
-  chatmanager.builder: '&8[&1Builder&8] &a{PLAYER} &7: &f{MESSAGE}'
+  # giving a permission chatmanager.builder will give them this prefix
+  builder: '&8[&1Builder&8] &a{PLAYER} &7: &f{MESSAGE}'
 
   # If the player is not permitted it will direct to the default chatFormat
