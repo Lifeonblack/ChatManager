@@ -20,12 +20,6 @@ public class ChatAndReceive implements Listener {
     @EventHandler
     public void onChat(AsyncPlayerChatEvent e) {
 
-        if(apiManager.lockedChat(e.getPlayer())) {
-            e.setCancelled(true);
-            e.getPlayer().sendMessage(apiManager.getLanguage().getString("playerChatLock"));
-            return;
-        }
-
         if(apiManager.muted(e.getPlayer())) {
             e.setCancelled(true);
             e.getPlayer().sendMessage(apiManager.getLanguage().getString("playerChatMute"));

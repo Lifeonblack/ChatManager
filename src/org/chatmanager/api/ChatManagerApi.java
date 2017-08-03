@@ -125,35 +125,19 @@ public class ChatManagerApi implements ApiManager {
     }
 
     @Override
-    public void lockChat(Player player) {
-        if(Lists.chatLock.contains(player.getUniqueId())) {
-            player.sendMessage(ChatManager.getApi().getLanguage().getString("unLockedChat"));
-            Lists.chatLock.remove(player.getUniqueId());
-        }else {
-            player.sendMessage(ChatManager.getApi().getLanguage().getString("lockedChat"));
-            Lists.chatLock.add(player.getUniqueId());
-        }
-    }
-
-    @Override
     public void removeReceiveAbility(Player player) {
         if(Lists.receiveAbility.contains(player.getUniqueId())) {
             player.sendMessage(ChatManager.getApi().getLanguage().getString("receiveAbility"));
             Lists.receiveAbility.remove(player.getUniqueId());
         }else {
             player.sendMessage(ChatManager.getApi().getLanguage().getString("noReceiveAbility"));
-            Lists.chatLock.add(player.getUniqueId());
+            Lists.receiveAbility.add(player.getUniqueId());
         }
     }
 
     @Override
     public boolean muted(OfflinePlayer player) {
         return Lists.muted.contains(player.getUniqueId());
-    }
-
-    @Override
-    public boolean lockedChat(Player player) {
-        return Lists.chatLock.contains(player.getUniqueId());
     }
 
     @Override

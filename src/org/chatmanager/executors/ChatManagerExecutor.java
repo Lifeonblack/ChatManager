@@ -40,7 +40,6 @@ public class ChatManagerExecutor implements CommandExecutor {
                 sender.sendMessage(new Word("&8[&bChatManager&8] &b/" + label + " removeword {WORD} : &7to remove word").colorize());
                 sender.sendMessage(new Word("&8[&bChatManager&8] &c/" + label + " mute <player> : &7to mute a player").colorize());
                 sender.sendMessage(new Word("&8[&bChatManager&8] &c/" + label + " unmute <player> : &7to mute a player").colorize());
-                sender.sendMessage(new Word("&8[&bChatManager&8] &b/" + label + " toggle <chat or receive> : &7chat to lock your chat and receive so you cannot receive message").colorize());
                 return true;
             }
 
@@ -55,10 +54,6 @@ public class ChatManagerExecutor implements CommandExecutor {
                 }
                 if(args[0].equalsIgnoreCase("removeword")) {
                     sender.sendMessage(new Word("&8[&bChatManager&8] &c/" + label + " removeword {WORD} : &7to remove word").colorize());
-                    return true;
-                }
-                if(args[0].equalsIgnoreCase("toggle")) {
-                    sender.sendMessage(new Word("&8[&bChatManager&8] &c/" + label + " toggle <chat or receive> : &7to toggle whether you can send message or receive a message").colorize());
                     return true;
                 }
                 if(args[0].equalsIgnoreCase("mute")) {
@@ -82,26 +77,6 @@ public class ChatManagerExecutor implements CommandExecutor {
                 if(args[0].equalsIgnoreCase("removeword")) {
                     AbstractCommand abstractCommand = new RemoveWordCommand(sender);
                     abstractCommand.execute(sender, cmd, label, args);
-                    return true;
-                }
-                if(args[0].equalsIgnoreCase("toggle")) {
-                    if(!(sender instanceof Player)) {
-                        sender.sendMessage(apiManager.getLanguage().getString("onlyForPlayer"));
-                        return true;
-                    }
-
-                    switch (args[1].toLowerCase()) {
-
-                        case "chat":
-                            apiManager.lockChat((Player) sender);
-                            break;
-                        case "receive":
-                            apiManager.removeReceiveAbility((Player) sender);
-                            break;
-                        default:
-                            sender.sendMessage(ChatManager.getApi().getLanguage().getString("unknownCommand"));
-                            break;
-                    }
                     return true;
                 }
                 if(args[0].equalsIgnoreCase("mute")) {

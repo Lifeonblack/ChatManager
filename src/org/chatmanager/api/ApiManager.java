@@ -33,13 +33,9 @@ public interface ApiManager {
 
     public void mute(OfflinePlayer player);
 
-    public void lockChat(Player player);
-
     public void removeReceiveAbility(Player player);
 
     public boolean muted(OfflinePlayer player);
-
-    public boolean lockedChat(Player player);
 
     public boolean noReceiveAbility(Player player);
 
