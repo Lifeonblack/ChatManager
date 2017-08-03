@@ -30,3 +30,5 @@ english:
   receiveAbility: '&8[&bChatManager&8] &aYou can now receive any message'
   muted: '&8[&bChatManager&8] &cYou are now muted'
   unMute: '&8[&bChatManager&8] &aYou are now unmuted'
+  playerChatLock: '&8[&bChatManager&8 &cYour chat is locked'
+  playerChatMute: '&8[&bChatManager&8 &cYou are muted'

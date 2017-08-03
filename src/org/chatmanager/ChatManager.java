@@ -62,6 +62,7 @@ public class ChatManager extends JavaPlugin {
         new ChatFormat();
         new CommandUseCooldownListener();
         new JoinAndQuitListener();
+        new ChatAndReceive();
     }
 
     private void addCommands() {
