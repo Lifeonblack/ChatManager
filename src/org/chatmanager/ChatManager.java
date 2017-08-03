@@ -1,6 +1,9 @@
 package org.chatmanager;
 
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.chatmanager.api.ApiManager;
 import org.chatmanager.api.ChatManagerApi;
 import org.chatmanager.collections.Lists;
@@ -9,6 +12,10 @@ import org.chatmanager.executors.ClearChatCommand;
 import org.chatmanager.executors.ChatManagerExecutor;
 import org.chatmanager.listeners.*;
 import org.chatmanager.util.FileUtility;
+import org.chatmanager.util.Word;
+
+import java.util.Collections;
+import java.util.Random;
 
 public class ChatManager extends JavaPlugin {
     private static ChatManager instance = null;
@@ -37,6 +44,26 @@ public class ChatManager extends JavaPlugin {
 
         // add commands
         addCommands();
+
+        // broadcast
+        if(getConfig().getBoolean("autoBroadcast")) {
+
+            final long MINUTES = getConfig().getInt("broadcastDelay") * 60 * 20;
+            Collections.sort(Lists.listToBroadcast);
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    int maxIndex = Lists.listToBroadcast.size();
+                    Random random = new Random();
+                    if(Bukkit.getOnlinePlayers().isEmpty()) {
+                        cancel();
+                    }
+                    for(Player player : Bukkit.getOnlinePlayers()) {
+                        player.sendMessage(new Word(Lists.listToBroadcast.get(random.nextInt(maxIndex))).colorize());
+                    }
+                }
+            }.runTaskTimerAsynchronously(this, MINUTES, MINUTES);
+        }
     }
 
     @Override

@@ -1,5 +1,6 @@
 package org.chatmanager.collections;
 
+import org.chatmanager.ChatManager;
 import org.chatmanager.util.FileUtility;
 import java.util.*;
 
@@ -10,6 +11,7 @@ public class Lists {
     public static List<UUID> players;
     public static HashMap<UUID, Integer> chatCount;
     public static List<UUID> muted;
+    public static List<String> listToBroadcast;
     public static List<UUID> receiveAbility;
 
     public static void reloadWords() {
@@ -30,6 +32,7 @@ public class Lists {
         chatCount = new HashMap<>();
         muted = new ArrayList<>();
         receiveAbility = new ArrayList<>();
+        listToBroadcast = ChatManager.getInstance().getConfig().getStringList("broadcastMessages");
     }
 
 }

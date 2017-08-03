@@ -173,25 +173,18 @@ customQuitMessage:
   owner: '&cThe owner left'
 
  ######################################
- #            Anti Cheat              #
+ #          Auto Broadcast            #
  ######################################
 
-# This feature is only special
-# Enable this feature if you want
-antiCheat: true
+# enable this feature if you want
+autoBroadcast: true
 
-# on player interact
-# this will check if the player is interacting faster, then warn player
-playerInteract: true
+# broadcast delay
+# delay is equivalent to minutes
+broadcastDelay: 3
 
-# on player break
-# if the player break many blocks faster, then warn the player
-# this is system is smart, it will not warn the player when breaking just 10 blocks :)
-playerBreak: true
-
-# on player click on inventory
-# if it is fast it will close and warn the player
-playerClickInventory: true
-
-# if player is hitting another entity faster it will warn the player
-playerDamageEntity: true
+# the broadcast messages
+broadcastMessage:
+  - '&bFirst message'
+  - '&bSecond message'
+  - '&bThird message'
