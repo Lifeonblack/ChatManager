@@ -1,11 +1,14 @@
 package org.chatmanager.executors;
 
+import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.chatmanager.ChatManager;
 import org.chatmanager.api.ApiManager;
+import org.chatmanager.api.ChatManagerApi;
 import org.chatmanager.collections.Lists;
 import org.chatmanager.commands.AbstractCommand;
 import org.chatmanager.commands.AddWordCommand;
@@ -35,6 +38,8 @@ public class ChatManagerExecutor implements CommandExecutor {
                 sender.sendMessage(new Word(message2).colorize());
                 sender.sendMessage(new Word("&8[&bChatManager&8] &b/" + label + " addword {WORD} : &7to add word").colorize());
                 sender.sendMessage(new Word("&8[&bChatManager&8] &b/" + label + " removeword {WORD} : &7to remove word").colorize());
+                sender.sendMessage(new Word("&8[&bChatManager&8] &c/" + label + " mute <player> : &7to mute a player").colorize());
+                sender.sendMessage(new Word("&8[&bChatManager&8] &c/" + label + " unmute <player> : &7to mute a player").colorize());
                 sender.sendMessage(new Word("&8[&bChatManager&8] &b/" + label + " toggle <chat or receive> : &7chat to lock your chat and receive so you cannot receive message").colorize());
                 return true;
             }
@@ -54,6 +59,14 @@ public class ChatManagerExecutor implements CommandExecutor {
                 }
                 if(args[0].equalsIgnoreCase("toggle")) {
                     sender.sendMessage(new Word("&8[&bChatManager&8] &c/" + label + " toggle <chat or receive> : &7to toggle whether you can send message or receive a message").colorize());
+                    return true;
+                }
+                if(args[0].equalsIgnoreCase("mute")) {
+                    sender.sendMessage(new Word("&8[&bChatManager&8] &c/" + label + " mute <player> : &7to mute a player").colorize());
+                    return true;
+                }
+                if(args[0].equalsIgnoreCase("unmute")) {
+                    sender.sendMessage(new Word("&8[&bChatManager&8] &c/" + label + " unmute <player> : &7to mute a player").colorize());
                     return true;
                 }
                 sender.sendMessage(ChatManager.getApi().getLanguage().getString("unknownCommand"));
@@ -89,7 +102,42 @@ public class ChatManagerExecutor implements CommandExecutor {
                             sender.sendMessage(ChatManager.getApi().getLanguage().getString("unknownCommand"));
                             break;
                     }
+                    return true;
+                }
+                if(args[0].equalsIgnoreCase("mute")) {
+                    Player target = Bukkit.getServer().getPlayer(args[1]);
+                    if(!target.hasPlayedBefore()) {
+                        sender.sendMessage(apiManager.getLanguage().getString("playerMustExist"));
+                        return true;
+                    }
+                    if(target == null) {
+                        OfflinePlayer offlinePlayer = target;
+                        apiManager.mute(offlinePlayer);
+                        sender.sendMessage(apiManager.getLanguage().getString("playerMuted"));
+                        return true;
+                    }
+                    ChatManagerApi chatManagerApi = (ChatManagerApi)apiManager;
+                    chatManagerApi.mute(target);
+                    sender.sendMessage(apiManager.getLanguage().getString("playerMuted"));
+                    return true;
+                }
 
+                if(args[0].equalsIgnoreCase("unmute")) {
+                    Player target = Bukkit.getServer().getPlayer(args[1]);
+                    if(!target.hasPlayedBefore()) {
+                        sender.sendMessage(apiManager.getLanguage().getString("playerMustExist"));
+                        return true;
+                    }
+                    if(target == null) {
+                        OfflinePlayer offlinePlayer = target;
+                        apiManager.unMute(offlinePlayer);
+                        sender.sendMessage(apiManager.getLanguage().getString("playerUnMuted"));
+                        return true;
+                    }
+                    ChatManagerApi chatManagerApi = (ChatManagerApi)apiManager;
+                    chatManagerApi.unMute(target);
+                    sender.sendMessage(apiManager.getLanguage().getString("playerUnMuted"));
+                    return true;
                 }
                 sender.sendMessage(ChatManager.getApi().getLanguage().getString("unknownCommand"));
                 return true;

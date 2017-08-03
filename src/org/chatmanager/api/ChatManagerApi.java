@@ -1,6 +1,7 @@
 package org.chatmanager.api;
 
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.chatmanager.ChatManager;
 import org.chatmanager.collections.Lists;
@@ -85,9 +86,8 @@ public class ChatManagerApi implements ApiManager {
     }
 
     @Override
-    public void mute(Player player) {
+    public void mute(OfflinePlayer player) {
         if(!Lists.muted.contains(player.getUniqueId())) {
-            player.sendMessage(ChatManager.getApi().getLanguage().getString("muted"));
             Lists.muted.add(player.getUniqueId());
         }else {
             ChatManager.getInstance().getLogger().log(Level.WARNING, "Cannot mute " + player.getName());
@@ -96,6 +96,24 @@ public class ChatManagerApi implements ApiManager {
     }
 
     @Override
+    public void unMute(OfflinePlayer player) {
+        if(Lists.muted.contains(player.getUniqueId())) {
+            Lists.muted.remove(player.getUniqueId());
+        }else {
+            ChatManager.getInstance().getLogger().log(Level.WARNING, "Cannot unmute " + player.getName());
+            ChatManager.getInstance().getLogger().log(Level.WARNING, "Player is not muted");
+        }
+    }
+
+    public void mute(Player player) {
+        if(!Lists.muted.contains(player.getUniqueId())) {
+            Lists.muted.add(player.getUniqueId());
+        }else {
+            ChatManager.getInstance().getLogger().log(Level.WARNING, "Cannot mute " + player.getName());
+            ChatManager.getInstance().getLogger().log(Level.WARNING, "Player is already muted");
+        }
+    }
+
     public void unMute(Player player) {
         if(Lists.muted.contains(player.getUniqueId())) {
             player.sendMessage(ChatManager.getApi().getLanguage().getString("unMuted"));
@@ -129,7 +147,7 @@ public class ChatManagerApi implements ApiManager {
     }
 
     @Override
-    public boolean muted(Player player) {
+    public boolean muted(OfflinePlayer player) {
         return Lists.muted.contains(player.getUniqueId());
     }
 
