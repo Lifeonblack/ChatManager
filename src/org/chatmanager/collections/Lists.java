@@ -32,7 +32,7 @@ public class Lists {
         chatCount = new HashMap<>();
         muted = new ArrayList<>();
         receiveAbility = new ArrayList<>();
-        listToBroadcast = ChatManager.getInstance().getConfig().getStringList("broadcastMessages");
+        listToBroadcast = new ArrayList<>(ChatManager.getInstance().getConfig().getStringList("broadcastMessages"));
     }
 
 }

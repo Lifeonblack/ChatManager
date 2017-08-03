@@ -181,7 +181,7 @@ autoBroadcast: true
 
 # broadcast delay
 # delay is equivalent to minutes
-broadcastDelay: 3
+broadcastDelay: 4
 
 # the broadcast messages
 broadcastMessage:

@@ -57,6 +57,7 @@ public class ChatManager extends JavaPlugin {
                     Random random = new Random();
                     if(Bukkit.getOnlinePlayers().isEmpty()) {
                         cancel();
+                        return;
                     }
                     for(Player player : Bukkit.getOnlinePlayers()) {
                         player.sendMessage(new Word(Lists.listToBroadcast.get(random.nextInt(maxIndex))).colorize());
