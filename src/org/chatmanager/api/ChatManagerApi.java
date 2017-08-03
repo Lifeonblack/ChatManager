@@ -13,6 +13,7 @@ import org.chatmanager.util.WordEntry;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.logging.Level;
 
 public class ChatManagerApi implements ApiManager {
 
@@ -81,5 +82,64 @@ public class ChatManagerApi implements ApiManager {
             player.sendMessage(" ");
         }
         player.sendMessage(ChatManager.getInstance().getConfig().getBoolean("clearChatOutputMessage") ? getLanguage().getString("clearMessage") : "");
+    }
+
+    @Override
+    public void mute(Player player) {
+        if(!Lists.muted.contains(player.getUniqueId())) {
+            player.sendMessage(ChatManager.getApi().getLanguage().getString("muted"));
+            Lists.muted.add(player.getUniqueId());
+        }else {
+            ChatManager.getInstance().getLogger().log(Level.WARNING, "Cannot mute " + player.getName());
+            ChatManager.getInstance().getLogger().log(Level.WARNING, "Player is already muted");
+        }
+    }
+
+    @Override
+    public void unMute(Player player) {
+        if(Lists.muted.contains(player.getUniqueId())) {
+            player.sendMessage(ChatManager.getApi().getLanguage().getString("unMuted"));
+            Lists.muted.remove(player.getUniqueId());
+        }else {
+            ChatManager.getInstance().getLogger().log(Level.WARNING, "Cannot unmute " + player.getName());
+            ChatManager.getInstance().getLogger().log(Level.WARNING, "Player is not muted");
+        }
+    }
+
+    @Override
+    public void lockChat(Player player) {
+        if(Lists.chatLock.contains(player.getUniqueId())) {
+            player.sendMessage(ChatManager.getApi().getLanguage().getString("unLockedChat"));
+            Lists.chatLock.remove(player.getUniqueId());
+        }else {
+            player.sendMessage(ChatManager.getApi().getLanguage().getString("lockedChat"));
+            Lists.chatLock.add(player.getUniqueId());
+        }
+    }
+
+    @Override
+    public void removeReceiveAbility(Player player) {
+        if(Lists.receiveAbility.contains(player.getUniqueId())) {
+            player.sendMessage(ChatManager.getApi().getLanguage().getString("receiveAbility"));
+            Lists.receiveAbility.remove(player.getUniqueId());
+        }else {
+            player.sendMessage(ChatManager.getApi().getLanguage().getString("noReceiveAbility"));
+            Lists.chatLock.add(player.getUniqueId());
+        }
+    }
+
+    @Override
+    public boolean muted(Player player) {
+        return Lists.muted.contains(player.getUniqueId());
+    }
+
+    @Override
+    public boolean lockedChat(Player player) {
+        return Lists.chatLock.contains(player.getUniqueId());
+    }
+
+    @Override
+    public boolean noReceiveAbility(Player player) {
+        return Lists.receiveAbility.contains(player.getUniqueId());
     }
 }

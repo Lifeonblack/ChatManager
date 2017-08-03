@@ -29,4 +29,18 @@ public interface ApiManager {
     public List<FileUtility> getFiles();
 
     public void clearChat(Player player);
+
+    public void mute(Player player);
+
+    public void lockChat(Player player);
+
+    public void removeReceiveAbility(Player player);
+
+    public boolean muted(Player player);
+
+    public boolean lockedChat(Player player);
+
+    public boolean noReceiveAbility(Player player);
+
+    public void unMute(Player player);
 }

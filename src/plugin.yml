@@ -1,5 +1,5 @@
 name: ChatManagerReloaded
-version: 1.3
+version: 1.4
 author: Lifeonblack
 main: org.chatmanager.ChatManager
 commands:

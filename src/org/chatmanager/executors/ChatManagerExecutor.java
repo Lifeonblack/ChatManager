@@ -3,7 +3,10 @@ package org.chatmanager.executors;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.chatmanager.ChatManager;
+import org.chatmanager.api.ApiManager;
+import org.chatmanager.collections.Lists;
 import org.chatmanager.commands.AbstractCommand;
 import org.chatmanager.commands.AddWordCommand;
 import org.chatmanager.commands.ChatManagerReloadCommand;
@@ -11,6 +14,7 @@ import org.chatmanager.commands.RemoveWordCommand;
 import org.chatmanager.util.Word;
 
 public class ChatManagerExecutor implements CommandExecutor {
+    ApiManager apiManager = ChatManager.getApi();
 
 
     @Override
@@ -31,6 +35,7 @@ public class ChatManagerExecutor implements CommandExecutor {
                 sender.sendMessage(new Word(message2).colorize());
                 sender.sendMessage(new Word("&8[&bChatManager&8] &b/" + label + " addword {WORD} : &7to add word").colorize());
                 sender.sendMessage(new Word("&8[&bChatManager&8] &b/" + label + " removeword {WORD} : &7to remove word").colorize());
+                sender.sendMessage(new Word("&8[&bChatManager&8] &b/" + label + " toggle <chat or receive> : &7chat to lock your chat and receive so you cannot receive message").colorize());
                 return true;
             }
 
@@ -47,6 +52,10 @@ public class ChatManagerExecutor implements CommandExecutor {
                     sender.sendMessage(new Word("&8[&bChatManager&8] &c/" + label + " removeword {WORD} : &7to remove word").colorize());
                     return true;
                 }
+                if(args[0].equalsIgnoreCase("toggle")) {
+                    sender.sendMessage(new Word("&8[&bChatManager&8] &c/" + label + " toggle <chat or receive> : &7to toggle whether you can send message or receive a message").colorize());
+                    return true;
+                }
                 sender.sendMessage(ChatManager.getApi().getLanguage().getString("unknownCommand"));
                 return true;
             }
@@ -61,6 +70,26 @@ public class ChatManagerExecutor implements CommandExecutor {
                     AbstractCommand abstractCommand = new RemoveWordCommand(sender);
                     abstractCommand.execute(sender, cmd, label, args);
                     return true;
+                }
+                if(args[0].equalsIgnoreCase("toggle")) {
+                    if(!(sender instanceof Player)) {
+                        sender.sendMessage(apiManager.getLanguage().getString("onlyForPlayer"));
+                        return true;
+                    }
+
+                    switch (args[1].toLowerCase()) {
+
+                        case "chat":
+                            apiManager.lockChat((Player) sender);
+                            break;
+                        case "receive":
+                            apiManager.removeReceiveAbility((Player) sender);
+                            break;
+                        default:
+                            sender.sendMessage(ChatManager.getApi().getLanguage().getString("unknownCommand"));
+                            break;
+                    }
+
                 }
                 sender.sendMessage(ChatManager.getApi().getLanguage().getString("unknownCommand"));
                 return true;
