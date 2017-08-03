@@ -91,6 +91,7 @@ public class ChatManager extends JavaPlugin {
         new CommandUseCooldownListener();
         new JoinAndQuitListener();
         new ChatAndReceive();
+        new AntiCaps();
     }
 
     private void addCommands() {

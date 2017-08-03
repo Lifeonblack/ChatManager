@@ -188,3 +188,23 @@ broadcastMessage:
   - '&bFirst message'
   - '&bSecond message'
   - '&bThird message'
+
+ ######################################
+ #             Anti Caps              #
+ ######################################
+
+antiCaps:
+
+  enable: true
+
+  # action may be block or warn
+  action: 'block'
+
+  # if blocked
+  block: '&cYou cannot chat with too many caps'
+
+  # if warn
+  warn: '&cExcessive use of caps'
+
+  # make the message lowercase
+  lowercase: true
