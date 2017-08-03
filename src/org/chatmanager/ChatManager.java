@@ -61,6 +61,7 @@ public class ChatManager extends JavaPlugin {
         new AntiAdvertise();
         new ChatFormat();
         new CommandUseCooldownListener();
+        new JoinAndQuitListener();
     }
 
     private void addCommands() {

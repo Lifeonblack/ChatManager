@@ -118,3 +118,56 @@ groupFormat:
   builder: '&8[&1Builder&8] &a{PLAYER} &7: &f{MESSAGE}'
 
   # If the player is not permitted it will direct to the default chatFormat
+
+ ######################################
+ #          Join And Quit             #
+ ######################################
+
+# Make it false if you do not want to enable this feature
+# PlaceHolders
+# {PLAYER} return to player name
+# {DISPLAYNAME} return player displayname
+# {SERVER} return to server name
+# {MAXPLAYER} return to max player count
+# {ONLINE} return to online players
+# {WORLD} return to world name
+joinListener: true
+
+# Color code is supported
+# if the player is not permitted with custom join message
+# then this is the default one
+joinMessage: '&bWelcome back &7{DISPLAYNAME} &benjoy your day'
+
+# First join message
+firstJoinMessage:
+
+  # This is for default player
+  default: '&bWelcme &7{DISPLAYNAME} &bto the server'
+
+  # I assume that you want a custom one for specific player so input their name
+  LifeonBlack: '&bWelcome developer :)'
+
+# having no permission below will fire the joinMessage above
+customJoinMessage:
+
+  # This is only for op
+  op: '&bWelcome the operator of the server'
+
+  # This is for permitted chatmanager.join.owner
+  owner: '&bWelcome the owner of the server'
+
+quitListener: true
+
+# Color code is supported
+# if the player is not permitted with custom quit message
+# then this is the default one
+quitMessage: '&7[-]{DISPLAYNAME}'
+
+# having no permission below will fire the quitMessage above
+customQuitMessage:
+
+  # This is for only op
+  op: '&cOperator left'
+
+  # This is for permitted chatmanager.quit.owner
+  owner: '&cThe owner left'
