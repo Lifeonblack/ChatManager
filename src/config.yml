@@ -105,17 +105,19 @@ chatFormatting: true
 # {PLAYER} , {RANK} = PEX rank or GroupManager rank
 # {MESSAGE} returns to player message
 # {DISPLAYNAME} returns to player displayname
-chatFormat: '&7{PLAYER} &7: &f{MESSAGE}'
+# {LOCALIZATION} for changing this one go to the lowest part of the config
+# Localization has no need to add space or color
+chatFormat: '{LOCALIZATION}&7{PLAYER} &7: &f{MESSAGE}'
 
 # format based on the permission
 groupFormat:
 
   # chatmanager.op is default, this will check if the player is op not the permission
-  op: '&8[&cOperator&8] &c{PLAYER} &7: &f{MESSAGE}'
+  op: '{LOCALIZATION}&8[&cOperator&8] &c{PLAYER} &7: &f{MESSAGE}'
 
   # else if the player is not op check other permission
   # giving a permission chatmanager.builder will give them this prefix
-  builder: '&8[&1Builder&8] &a{PLAYER} &7: &f{MESSAGE}'
+  builder: '{LOCALIZATION}&8[&1Builder&8] &a{PLAYER} &7: &f{MESSAGE}'
 
   # If the player is not permitted it will direct to the default chatFormat
 
@@ -208,3 +210,18 @@ antiCaps:
 
   # make the message lowercase
   lowercase: true
+
+ ######################################
+ #            Local Chat              #
+ ######################################
+
+# Whether this feature enable or not
+localChat: true
+
+# Radius where local chat can be sent
+chatRadius: 30
+
+# {LOCALIZATION} is a local and can be used as placeholder on changing the format above
+# Input replacement
+Local: '[L] &r'
+Global: '&6[Shout] &r'
