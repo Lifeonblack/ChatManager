@@ -54,13 +54,13 @@ public class ChatManager extends JavaPlugin {
                 @Override
                 public void run() {
                     int maxIndex = Lists.listToBroadcast.size();
-                    Random random = new Random();
+                    Random random = new Random(maxIndex);
                     if(Bukkit.getOnlinePlayers().isEmpty()) {
                         cancel();
                         return;
                     }
                     for(Player player : Bukkit.getOnlinePlayers()) {
-                        player.sendMessage(new Word(Lists.listToBroadcast.get(random.nextInt(maxIndex))).colorize());
+                        player.sendMessage(new Word(Lists.listToBroadcast.get(random.nextInt())).colorize());
                     }
                 }
             }.runTaskTimerAsynchronously(this, MINUTES, MINUTES);
