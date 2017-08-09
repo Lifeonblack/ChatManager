@@ -225,3 +225,21 @@ chatRadius: 30
 # Input replacement
 Local: '[L] &r'
 Global: '&6[Shout] &r'
+
+ ######################################
+ #           Player Poke              #
+ ######################################
+
+# Whether this feature enable or not
+playerPoke: true
+
+# Change the color of tagged player
+pokeName: '&6&l@{PLAYER}'
+
+# Send a sound to tagged player
+# For list of sounds https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Sound.html
+Sound:
+  enable: true
+  type: 'ENTITY_CHICKEN_EGG'
+  volume: 1.0
+  pitch: 1.0
